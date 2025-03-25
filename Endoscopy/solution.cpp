@@ -52,6 +52,7 @@ int bfs(int **grid, bool** visited, int N, int M, int R, int C, int L) {
             q.push({{nx,ny},len + 1});
         }
     }
+    return count;
 }
 
 int main() {
@@ -60,17 +61,18 @@ int main() {
     int N, M, R, C, L;
     while (t--){
         cin >> N >> M >> R >> C >> L;
-        int **grid = new int*[M];
+        int **grid = new int*[N];
+        for(int i = 0;i < N;i++){
+            grid[i] = new int[M];
+        }
         for(int i = 0;i < N;i++){
             for(int j=0;j < M;j++){
                 cin >> grid[i][j];
             }
         }
-        bool **visited = new bool*[M];
-        for(int i = 0;i < N;i++){
-            for(int j=0;j < M;j++){
-                visited[i][j] = 0;
-            }
+        bool **visited = new bool*[N];
+        for (int i = 0; i < N; i++) {
+            visited[i] = new bool[M]();
         }
 
         cout << bfs(grid, visited, N, M, R, C, L);
